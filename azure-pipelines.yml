@@ -24,5 +24,4 @@ stages:
         azureContainerRegistry: '{"loginServer":"devopspipelinedockercompose.azurecr.io", "id" : "/subscriptions/69a99e91-0ea7-42c2-b3a4-dcbbfb028230/resourceGroups/devops-deploy/providers/Microsoft.ContainerRegistry/registries/devopsPipelineDockerCompose"}'
         dockerComposeFile: '**/docker-compose.yml'
         action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'up'
-        arguments: '-d'
+        dockerComposeCommand: 'build'
