@@ -21,7 +21,12 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
     - task: DockerCompose@0
-      displayName: Build an image
+      displayName: Build services
       inputs:
-        action: Run a Docker Compose command
+        action: Build services
+        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        azureContainerRegistry: $(azureContainerRegistry)
         dockerComposeFile: docker-compose.yml
+        projectName: $(Build.Repository.Name)
+        qualifyImageNames: true
+        additionalImageTags: $(Build.BuildId)
