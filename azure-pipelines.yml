@@ -25,4 +25,3 @@ stages:
         dockerComposeFile: '**/docker-compose.yml'
         action: 'Run a Docker Compose command'
         dockerComposeCommand: 'run'
-        arguments: '--parallel'
