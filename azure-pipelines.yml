@@ -24,5 +24,4 @@ stages:
       displayName: Build an image
       inputs:
         action: Run a Docker Compose command
-        containerCommand: build
         dockerComposeFile: docker-compose.yml
