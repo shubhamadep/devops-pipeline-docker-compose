@@ -1,16 +1,3 @@
-# Docker
-- task: DockerCompose@0
-  inputs:
-    containerregistrytype: 'Azure Container Registry'
-    azureSubscription: 'Azure subscription 1(69a99e91-0ea7-42c2-b3a4-dcbbfb028230)'
-    azureContainerRegistry: '{"loginServer":"devopspipelinedockercompose.azurecr.io", "id" : "/subscriptions/69a99e91-0ea7-42c2-b3a4-dcbbfb028230/resourceGroups/devops-deploy/providers/Microsoft.ContainerRegistry/registries/devopsPipelineDockerCompose"}'
-    dockerComposeFile: '**/docker-compose.yml'
-    action: 'Run a Docker Compose command'
-    dockerComposeCommand: 'docker-compose up'
-    arguments: '-d'
-# Build a Docker image 
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
 trigger:
 - master
 
@@ -32,10 +19,10 @@ stages:
     - task: DockerCompose@0
       displayName: Build services
       inputs:
-        action: Build services
-        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureContainerRegistry: $(azureContainerRegistry)
-        dockerComposeFile: docker-compose.yml
-        projectName: $(Build.Repository.Name)
-        qualifyImageNames: true
-        additionalImageTags: $(Build.BuildId)
+        containerregistrytype: 'Azure Container Registry'
+        azureSubscription: 'Azure subscription 1(69a99e91-0ea7-42c2-b3a4-dcbbfb028230)'
+        azureContainerRegistry: '{"loginServer":"devopspipelinedockercompose.azurecr.io", "id" : "/subscriptions/69a99e91-0ea7-42c2-b3a4-dcbbfb028230/resourceGroups/devops-deploy/providers/Microsoft.ContainerRegistry/registries/devopsPipelineDockerCompose"}'
+        dockerComposeFile: '**/docker-compose.yml'
+        action: 'Run a Docker Compose command'
+        dockerComposeCommand: 'docker-compose up'
+        arguments: '-d'
