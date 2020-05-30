@@ -26,8 +26,8 @@ services:
     image: apache/nifi:latest
     restart: unless-stopped
     volumes:
-      - /nifi:/nifi
-      - /opt/nifi-current/flowfile_repository:/nifi_dataflow
+      - ${WEBAPP_STORAGE_HOME}/nifi:/nifi
+      - ${WEBAPP_STORAGE_HOME}/opt/nifi-current/flowfile_repository:/nifi_dataflow
     ports:
       - "8080:8080"
     environment:
