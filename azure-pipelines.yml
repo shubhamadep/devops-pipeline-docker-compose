@@ -1,0 +1,28 @@
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: DockerCompose@0
+      inputs:
+        containerregistrytype: 'Azure Container Registry'
+        azureSubscription: 'Azure subscription 1(69a99e91-0ea7-42c2-b3a4-dcbbfb028230)'
+        azureContainerRegistry: '{"loginServer":"devopspipelinedockercompose.azurecr.io", "id" : "/subscriptions/69a99e91-0ea7-42c2-b3a4-dcbbfb028230/resourceGroups/devops-deploy/providers/Microsoft.ContainerRegistry/registries/devopsPipelineDockerCompose"}'
+        dockerComposeFile: '**/docker-compose.yml'
+        action: 'Push services'
+        includeSourceTags: true
+        includeLatestTag: true
+
