@@ -48,3 +48,6 @@ services:
     image: mongo
     ports:
       - 27017:27017
+    volumes:
+      - /opt/nifi_demo/mongo-data:/data
+      - /opt/nifi_demo/mongo:/opt/nifi_demo
