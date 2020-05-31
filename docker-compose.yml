@@ -20,14 +20,14 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/esdata01:/usr/share/elasticsearch/data
+      - /esdata01:/usr/share/elasticsearch/data
   nifi:
     container_name: nifi
     image: apache/nifi:latest
     restart: unless-stopped
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/nifi:/nifi
-      - ${WEBAPP_STORAGE_HOME}/opt/nifi-current/flowfile_repository:/nifi_dataflow
+      - /nifi:/nifi
+      - /opt/nifi-current/flowfile_repository:/nifi_dataflow
     ports:
       - "8080:8080"
     environment:
@@ -49,5 +49,5 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/opt/nifi_demo/mongo-data:/data
-      - ${WEBAPP_STORAGE_HOME}/opt/nifi_demo/mongo:/opt/nifi_demo
+      - /opt/nifi_demo/mongo-data:/data
+      - /opt/nifi_demo/mongo:/opt/nifi_demo
